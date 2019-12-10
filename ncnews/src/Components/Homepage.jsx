@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
 
-class CommentDeleter extends Component {
+class Homepage extends Component {
   render() {
-  
-
-
     return (
       <div>
-        <button>Delete</button>
+        <h1>Homepage</h1>
       </div>
     );
   }
 }
 
-export default CommentDeleter;
+export default Homepage;

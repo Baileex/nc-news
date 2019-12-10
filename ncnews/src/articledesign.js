@@ -17,7 +17,6 @@ export const Card = styled.li`
 `;
 
 export const Votes = styled.div`
-  top: 15%;
   color: #fff;
   text-transform: uppercase;
   font-size: 0.75em;
@@ -28,7 +27,8 @@ export const Votes = styled.div`
   white-space: nowrap;
   text-align: centre;
   position: absolute;
-  top: 50%;
+  float:right
+  position: absolute;
   left: 90%;
   -webkit-transform: translate(-50%, -50%);
 `;
@@ -42,5 +42,20 @@ export const ArticleList = styled.ul`
   position: absolute;
   padding-top: 3250px
   left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+`;
+
+export const CommentVotes = styled.ul`
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 0.125rem 0.75rem;
+  border-radius: 100px;
+  white-space: nowrap;
+  text-align: centre;
+  position: absolute;
+  left: 90%;
   -webkit-transform: translate(-50%, -50%);
 `;

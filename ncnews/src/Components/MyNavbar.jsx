@@ -1,13 +1,20 @@
 import React, { Component } from "react";
 import * as api from "../api";
-import { Navbar, Nav, NavDropdown, Form, FormControl, Button} from "react-bootstrap";
-import styled from "styled-components"
-import {Link} from "@reach/router"
+import {
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Button
+} from "react-bootstrap";
+import styled from "styled-components";
+import { Link } from "@reach/router";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const Navigate = styled.div`
-margin-bottom: 10px
-`
-
+  margin-bottom: 10px;
+`;
 
 class MyNavbar extends Component {
   state = {
@@ -33,20 +40,24 @@ class MyNavbar extends Component {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="mr-auto">
-              <Link to="/">Home </Link>
-              <Link to="/articles"> Articles</Link>
+              <Link to="/" className="link">
+                {" "}
+                Home{" "}
+              </Link>
+              <Link to="/articles" className="link">
+                {" "}
+                Articles
+              </Link>
               <NavDropdown title="Topics" id="basic-nav-dropdown">
                 {topics.map(topic => {
                   return (
-                    <NavDropdown.Item key={topic.slug}>
-                      <Link to={`/topics/${topic.slug}`}>{topic.slug}</Link>
+                    <NavDropdown.Item key={topic.slug} variant="purple">
+                      <Link className="link" to={`/topics/${topic.slug}`}>{topic.slug} </Link>
                     </NavDropdown.Item>
                   );
                 })}
                 <NavDropdown.Divider />
-                <NavDropdown.Item>
-                  Add New Topic
-                </NavDropdown.Item>
+                <NavDropdown.Item>Add New Topic</NavDropdown.Item>
               </NavDropdown>
             </Nav>
             <Form inline>

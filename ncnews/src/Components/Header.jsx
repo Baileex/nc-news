@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from "styled-components"
+import logo from "../img/cover.png";
 
 const Heading1 = styled.h1`
   font-size: 54px;
@@ -9,8 +10,8 @@ const Heading1 = styled.h1`
 
 const Header = () => {
   return (
-    <div>
-      <Heading1>NC News</Heading1>
+    <div className="header">
+      <img src={logo}></img>
     </div>
   );
 };

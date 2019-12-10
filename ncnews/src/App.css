@@ -88,3 +88,72 @@
     line-height: 1;
     background: #2f2f2f;
 }
+
+ul {
+  list-style-type: none;
+}
+
+.votebox {
+  height: 80px;
+  position: relative;
+  color: #fff;
+}
+
+.vote {
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  position: absolute;
+}
+
+.vote:after {
+  width: 6px;
+  height: 8px;
+  position: absolute;
+  left: -3px;
+  content: ' ';
+}
+
+.up.vote {
+  border-bottom-color: rgb(192, 142, 216);
+  border-top-width: 0;
+  top: 0;
+} 
+
+
+.down.vote {
+  border-top-color: rgb(192, 142, 216);
+  border-bottom-width: 0;
+  bottom: 0;
+} 
+
+.voting {
+  height: 80px;
+  position: relative;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 0.75em;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 100px;
+  white-space: nowrap;
+  position: absolute;
+  left: 90%;
+  -webkit-transform: translate(-50%, -50%);
+}
+
+.link {
+  color: #666363;
+  padding: 10px 20px;
+
+}
+
+img {
+  width: 10%;
+  height: 10%;
+  padding: 20px 0;
+}
+
+.header {
+  padding: 10px 0;
+}
