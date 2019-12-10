@@ -39,7 +39,7 @@ class MyNavbar extends Component {
                 {topics.map(topic => {
                   return (
                     <NavDropdown.Item key={topic.slug}>
-                      <Link to={`/articles?topic_slug=${topic.slug}`}>{topic.slug}</Link>
+                      <Link to={`/topics/${topic.slug}`}>{topic.slug}</Link>
                     </NavDropdown.Item>
                   );
                 })}

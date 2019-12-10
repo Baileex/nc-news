@@ -1,10 +1,90 @@
-
-
-
-
-
-.App {
-
-
+.posted-date {
+  font-size: 12px;
+  letter-spacing: 0.08rem;
+  text-transform: uppercase;
 }
 
+.center {
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+}
+
+.entry-title {
+  margin-top: 12px;
+  font-size: 30px;
+  color: #2f2f2f;
+}
+
+.entry-content {
+    font-size: 16px;
+    line-height: 2rem;
+    text-align: left;
+}
+
+.comment-list {
+    padding: 0;
+    margin: 100px 0 0;
+    list-style-type: none;
+}
+
+.comment {
+  margin-bottom: 40px;
+}
+
+.comment-wrap {
+    width: calc(100% - 84px);
+}
+
+.comment-author a {
+    line-height: 1;
+    color: #2f2f2f;
+}
+
+.comment-author .fn a,
+.comment-author .comment-meta a {
+    padding-right: 15px;
+    margin-right: 15px;
+    border-right: 2px solid #2f2f2f;
+}
+
+.comment-wrap p {
+    margin-top: 14px;
+    font-size: 16px;
+    line-height: 1.85rem;
+    color: #666363;
+}
+
+.comments-form {
+  margin-top: 75px;
+  margin: auto;
+  width: 100%;
+  padding: 10px;
+}
+
+
+.comment-form textarea {
+    display: block;
+    width: 1000%;
+    padding: 20px 32px;
+    margin-bottom: 8px;
+    border: 0;
+    font-size: 16px;
+    line-height: 1;
+    color: #666363;
+    background: #efefef;
+    outline: none;
+    
+}
+
+.comment-form input[type="submit"] {
+    display: block;
+    width: 200px;
+    padding: 20px 0;
+    margin-top: 70px;
+    border: 0;
+    font-size: 14px;
+    color: #fff;
+    line-height: 1;
+    background: #2f2f2f;
+}
