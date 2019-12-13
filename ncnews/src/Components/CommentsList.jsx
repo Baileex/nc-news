@@ -1,34 +1,46 @@
 import React, { Component } from 'react';
 import * as api from "../api";
-import { CommentVotes } from "../articledesign";
 import formatDate from "../utils/utils";
 import CommentMaker from "./CommentMaker";
+import Voter from "./Voter"
+import Pagination from "./Pagination";
+import ErrorPage from "./ErrorPage"
 
 class CommentsList extends Component {
   state = {
     comments: [],
     isLoading: true,
-    error: null
+    error: null,
+    page: 1,
+    maxPages: null,
+    limit: 4
   };
   componentDidMount = () => {
     this.fetchComments();
   };
 
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevProps.id !== this.props.id) {
-  //     this.fetchComments();
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.page !== this.state.page) {
+      this.fetchComments();
+    }
+  }
+
+  changePage = (direction) => {
+   this.setState(currentState => {
+     return {page: currentState.page + direction}
+   })
+  }
 
   fetchComments = () => {
     const { article_id } = this.props;
+    const {limit, page} = this.state
     api
-      .getComments(article_id)
-      .then(comments => {
-        this.setState({ comments: comments, isLoading: false });
+      .getComments(article_id, limit, page)
+      .then(({comments, total_count}) => {
+        let max = Math.ceil(total_count / limit);
+        this.setState({ comments: comments, isLoading: false, maxPages: max });
       })
       .catch(({ response }) => {
-        console.dir(response);
         this.setState({
           error: {
             msg: response.data.msg,
@@ -76,8 +88,9 @@ class CommentsList extends Component {
   };
 
   render() {
-    const { comments } = this.state;
+    const { comments, error } = this.state;
     const {user } = this.props
+    if (error) return <ErrorPage status={error.status} msg={error.msg} />;
     return (
       <div>
       <ul>
@@ -90,11 +103,13 @@ class CommentsList extends Component {
                     <span className="fn">
                       <h6>{comment.author}</h6>
                     </span>
-
+                    <br></br>
                     <span className="comment-meta">
                       <h6>{formatDate(comment.created_at)}</h6>
-
-                      <CommentVotes>{comment.votes}</CommentVotes>
+                      <br></br>
+                      <Voter id={comment.comment_id}
+                      object="comments" 
+                      votes={comment.votes}></Voter>
                     </span>
                   </div>
                   <p>{comment.body}</p>
@@ -111,6 +126,7 @@ class CommentsList extends Component {
           );
         })}
       </ul>
+      <Pagination changePage={this.changePage}page={this.state.page} maxPages={this.state.maxPages}/>
       <CommentMaker postNewComment={this.postNewComment} />
       </div>
     );

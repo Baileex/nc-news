@@ -2,8 +2,8 @@ import React, { Component } from "react";
 import * as api from "../api";
 import LoadingIcon from "./LoadingIcon";
 import formatDate from "../utils/utils";
-import ArticleVoter from "./ArticleVoter";
-import ErrorPage from "./ErrorPage"
+import Voter from "./Voter";
+import ErrorPage from "./ErrorPage";
 import CommentsList from "./CommentsList";
 
 class ArticleById extends Component {
@@ -37,24 +37,31 @@ class ArticleById extends Component {
   };
 
   render() {
-    const { article, isLoading,  error } = this.state;
+    const { article, isLoading, error } = this.state;
     if (isLoading === true) return <LoadingIcon />;
-    if (error !== null) return <ErrorPage status={error.status} msg={error.msg} />;
+    if (error !== null)
+      return <ErrorPage status={error.status} msg={error.msg} />;
     return (
-      <article>
+      <article className="single-article">
         <h1 className="entry-title">{article.title}</h1>
+        <br></br>
         <div className="voting">
-          {/* <Votes>{article.votes}</Votes> */}
-          <ArticleVoter />
+          <Voter
+            id={article.article_id}
+            object="articles"
+            votes={article.votes}
+          />
         </div>
-
+        <br></br>
         <h6 className="posted-date">{formatDate(article.created_at)}</h6>
-
+        <br></br>
         <h4>By: {article.author}</h4>
-
+        <br></br>
         <p className="entry-content">{article.body}</p>
+        <br></br>
         <h4>Comments: {article.comment_count}</h4>
-        <CommentsList article_id={article.article_id} user={this.state.user}/>
+        <br></br>
+        <CommentsList article_id={article.article_id} user={this.state.user} />
       </article>
     );
   }

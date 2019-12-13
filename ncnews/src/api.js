@@ -8,18 +8,19 @@ export const getTopics = () => {
     });
 };
 
-export const getArticles = (topic_slug, sort_by, order, author ) => {
+export const getArticles = (topic_slug, sort_by, order, limit, page ) => {
   return axios
     .get("https://ncnewsjb.herokuapp.com/api/articles", {
       params: {
        topic: topic_slug,
        sort_by: sort_by,
        order: order,
-       author: author
+       limit: limit,
+       p: page
       }
     })
     .then(({ data }) => {
-      return data.articles;
+      return data
     });
 };
 
@@ -31,11 +32,14 @@ export const getSingleArticle = article_id => {
     });
 };
 
-export const getComments = article_id => {
+export const getComments = (article_id, limit, p) => {
   return axios
-    .get(`https://ncnewsjb.herokuapp.com/api/articles/${article_id}/comments`)
+    .get(`https://ncnewsjb.herokuapp.com/api/articles/${article_id}/comments`, {params: {
+      limit: limit,
+      p: p
+    }})
     .then(({ data }) => {
-      return data.comments;
+      return data;
     });
 };
 
@@ -54,4 +58,20 @@ export const deleteComment = comment_id => {
   return axios.delete(
     `https://ncnewsjb.herokuapp.com/api/comments/${comment_id}`
   )
+}
+
+export const patchVotes = (votes, id, object) => {
+  return axios.patch(`https://ncnewsjb.herokuapp.com/api/${object}/${id}`, { inc_votes: votes});
+}
+
+export const fetchUsers = () => {
+  return axios.get("https://ncnewsjb.herokuapp.com/api/users").then(({data}) => {
+    return data.users
+  });
+}
+
+export const getUserByUsername = (username) => {
+  return axios.get(`https://ncnewsjb.herokuapp.com/api/users/${username}`).then(({data}) => {
+    return data.user;
+  });
 }
